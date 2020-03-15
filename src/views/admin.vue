@@ -1,20 +1,20 @@
 <template>
   <div>
-    <h1>admin: {{admin}}</h1>
+    <h1>Admin: {{admin}}</h1>
 
-    <v-btn id="btnGetStudents" class="btn" @click="getStudents()">Load</v-btn>
+    <v-btn id="btnGetStudents" class="btn" color="success" @click="getStudents()">Load</v-btn>
 
     <v-card>
       <v-card-title>
         Students
         <v-spacer></v-spacer>
-        <!-- <v-text-field
+        <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
           label="Search"
           single-line
           hide-details
-        ></v-text-field>-->
+        ></v-text-field>
       </v-card-title>
       <v-data-table :headers="headers" :items="students" :search="search"></v-data-table>
     </v-card>
@@ -28,19 +28,17 @@ export default {
   data() {
     return {
       admin: "",
-      students: [
-        { id: 1, name: "Redgie Gravador", level: "2nd Yr" },
-        { id: 2, name: "Jessa Mae Yosores", level: "2nd Yr" },
-        { id: 3, name: "Nicole Genson", level: "2nd Yr" },
-        { id: 4, name: "Jovelyn Yosores", level: "2nd Yr" }
-      ],
+      students: [],
       search: "",
       headers: [
         {
-          text: "ID"
+          text: "ID",
+          align: "start",
+          sortable: false,
+          value: "id"
         },
-        { text: "Name", value: "calories" },
-        { text: "Year", value: "fat" }
+        { text: "Name", value: "name" },
+        { text: "Year", value: "level" }
       ]
     };
   },
