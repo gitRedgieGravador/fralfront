@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="rgb(0, 0, 255)" dark>
+    <v-app-bar app color="#3333ff" dark>
       <v-spacer></v-spacer>
 
       <v-btn text>
@@ -12,10 +12,8 @@
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
-
-    <!-- <v-content>
-      <HelloWorld/>
-    </v-content>-->
+    <br><br><br>
+    <router-view></router-view>
   </v-app>
 </template>
 
