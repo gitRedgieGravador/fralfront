@@ -4,11 +4,11 @@ import VueRouter from 'vue-router'
 import Admin from '../views/admin'
 import Cart from '../views/cart'
 import Account from '../views/account'
+import Card from '../components/redgie/card'
 
 Vue.use(VueRouter)
 
-const routes = [
-    {
+const routes = [{
     path: '/',
     name: 'admin',
     component: Admin
@@ -20,8 +20,11 @@ const routes = [
     path: '/account',
     name: 'account',
     component: Account
-}
-]
+}, {
+    path: '/card',
+    name: 'card',
+    component: Card
+}]
 
 const router = new VueRouter({
     mode: 'history',

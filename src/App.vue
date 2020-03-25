@@ -120,6 +120,7 @@
     created() {
       window.addEventListener("resize", this.Handler);
       this.Handler();
+      //this.$router.push({name:"card"})
     },
     destroyed() {
       window.removeEventListener("resize", this.Handler);
