@@ -84,6 +84,7 @@
 
   .x-fixed {
     overflow-x: hidden;
+    
   }
 
   .icon-footer {
@@ -92,7 +93,7 @@
 
   .sticky {
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     background-color: white;
     width: 100%;
   }
