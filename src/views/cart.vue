@@ -30,7 +30,7 @@
         </v-footer>
       </v-card>
       <br>
-      <v-btn color="red" block :disabled="!confirm">Order Now</v-btn>
+      <v-btn id="btnOrder" color="red" block :disabled="!confirm">Order Now</v-btn>
 
       <br>
       <br>
@@ -39,6 +39,9 @@
   </div>
 </template>
 <style scoped>
+#btnOrder {
+  height: 50px !important;
+}
 .conElem {
     margin-top: -10px !important;
 }

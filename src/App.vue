@@ -14,7 +14,7 @@
           </v-btn>
         </v-app-bar>
         <br><br><br>
-        <div class="pl-10 pr-10">
+        <div class="pl-2 pr-2">
           <router-view></router-view>
         </div>
       </v-app>
