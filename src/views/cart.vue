@@ -2,53 +2,35 @@
   <div id="card">
     <div class="pa-2">
       <div v-for="(each, i) in 5" :key="i" class="pt-2 pb-2">
-        <v-card outlined>
-          <v-row>
-            <v-col cols="10" class="bright nopadding">
-              <v-row>
-                <v-col class="nopadding">
-                  <img class="my-img" height="100" width="100" src="~@/assets/yellow.jpg">
-                </v-col>
-                <v-col class="cd-details">
-                  <h3>RACE Shoes</h3>
-                  <h5>2500.00</h5>
-                  <h5>2 pairs</h5>
-                  <h5>#shoes #male</h5>
-                </v-col>
-              </v-row>
-            </v-col>
-            <v-col class="pa-5">
-              <v-row>
-                <v-icon>mdi mdi-table-edit</v-icon>
-              </v-row>
-              <br>
-              <v-row>
-                <v-icon>mdi mdi-delete</v-icon>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-card>
+
+        <CartCard></CartCard>
+
       </div>
       <br>
       <v-card outlined class="pa-2">
         <h3>Delivery Infomation</h3>
         <v-row>
-          <v-col>
+          <v-col cols="10">
             <h5>Address: Basak Lapu lapu city</h5>
+            <h5>Mobile: 09123456789</h5>
           </v-col>
           <v-col>
-            <span>
-              <v-icon>mdi mdi-table-edit</v-icon>
-            </span>
-            <span>
-              <v-switch v-model="chips" class="ma-2" label="Chips"></v-switch>
-            </span>
+            <v-icon>mdi mdi-table-edit</v-icon>
           </v-col>
         </v-row>
-        <h5>Mobile: 09123456789</h5>
+        <v-footer class="nopadding confooter">
+          <v-row class="ml-5 conElem">
+            <v-col>
+              <v-switch v-model="confirm" class="ma-2"></v-switch>
+            </v-col>
+            <v-col>
+              <h3 id="conf-tx">Confirm</h3>
+            </v-col>
+          </v-row>
+        </v-footer>
       </v-card>
       <br>
-      <v-btn block>confirm</v-btn>
+      <v-btn color="red" block :disabled="!confirm">Order Now</v-btn>
 
       <br>
       <br>
@@ -57,6 +39,18 @@
   </div>
 </template>
 <style scoped>
+.conElem {
+    margin-top: -10px !important;
+}
+.confooter {
+    height: 50px !important;
+    margin-top: -10px;
+}
+#conf-tx {
+  position: relative !important;
+  right: 80px;
+  margin-top: 10px;
+}
 .nopadding {
   padding: 0px !important;
 }
@@ -73,14 +67,16 @@
 
 <script>
 /* eslint-disable */
-
+import CartCard from '../components/redgie/CartCard.vue';
 export default {
   name: "card",
-  component: {
-    //card
+  components: {
+    CartCard
   },
   data() {
-    return {};
+    return {
+      confirm: false
+    };
   }
 };
 </script>
