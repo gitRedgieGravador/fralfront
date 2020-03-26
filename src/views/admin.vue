@@ -46,7 +46,7 @@
             <v-card-text>details apears here.</v-card-text>
             <v-spacer></v-spacer>
             <v-row>
-              <v-btn block color="green darken-1" @click="dialogDetails = false">Back</v-btn>
+              <v-btn block color="secondary darken-1" @click="dialogDetails = false">Back</v-btn>
             </v-row>
           </v-card>
         </v-dialog>
