@@ -1,11 +1,14 @@
 <template>
-  <div id="card">
-    <div class="background">
+  <div>
+    <v-card class="background">
       <v-img
-        class="user_image"
-        src="https://professionalsofthefuture.com/wp-content/uploads/2018/12/user-icon.png"
+        src="https://metro.co.uk/wp-content/uploads/2019/11/goods_thumb_01-de3b.jpg?quality=90&strip=all"
       ></v-img>
-    </div>
+    </v-card>
+    <v-img
+      class="user_image"
+      src="https://professionalsofthefuture.com/wp-content/uploads/2018/12/user-icon.png"
+    ></v-img>
     <br>
     <p class="name">{{data.name}}</p>
     <v-row class="buttons">
@@ -20,7 +23,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <div class="ml-10 mt-10">
+    <div class="ml-12 mt-5">
       <p>Address: {{data.address}}</p>
       <p>Cellphone No.: {{data.number}}</p>
     </div>
@@ -46,6 +49,7 @@
   height: 140px;
   width: 140px;
   margin-left: 27%;
+  margin-top: -20%;
 }
 .name {
   font-weight: 700;
@@ -55,10 +59,7 @@
   padding: 5%;
 }
 .background {
-  background-image: url("https://metro.co.uk/wp-content/uploads/2019/11/goods_thumb_01-de3b.jpg?quality=90&strip=all");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
+  position: relative;
 }
 </style>
 
