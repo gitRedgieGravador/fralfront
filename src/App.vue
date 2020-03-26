@@ -13,7 +13,9 @@
             <v-icon>mdi-logout</v-icon>
           </v-btn>
         </v-app-bar>
-        <br><br><br>
+        <br>
+        <br>
+        <br>
         <div class="pl-2 pr-2">
           <router-view></router-view>
         </div>
@@ -24,7 +26,11 @@
       <v-card>
         <div class="sticky">
           <v-toolbar class="main-head" v-if="!search">
-            <h2>Application name</h2>
+            <h2 v-if="!cartScroll">Application name</h2>
+            <h2 v-if="cartScroll">Total Payable: PHP {{payable}}</h2>
+            <!-- <h2 v-if="$route.path == '/cart' && scrolled">Total</h2> -->
+            <v-spacer></v-spacer>
+            <img src="~@/assets/logo.png" class="logo-mobile">
           </v-toolbar>
           <v-toolbar dense class="toolbar" v-if="search">
             <v-text-field hide-details placeholder="search"></v-text-field>
@@ -36,8 +42,10 @@
         <v-app>
           <div class="pl-2 pr-2 x-fixed">
             <!-- content here -->
-            <br><br><br>
-            <router-view />
+            <br>
+            <br>
+            <br>
+            <router-view/>
 
             <v-footer absolute class="fixed">
               <hr>
@@ -50,109 +58,141 @@
               <v-col class="text-center br-left" @click="toogle('account')">
                 <v-icon>mdi mdi-account-outline</v-icon>
               </v-col>
-              <v-col v-if="this.$route.path == '/'" class="text-center br-left" @click="toogle('search')">
+              <v-col
+                v-if="this.$route.path == '/'"
+                class="text-center br-left"
+                @click="toogle('search')"
+              >
                 <v-icon>mdi mdi-magnify</v-icon>
               </v-col>
             </v-footer>
           </div>
         </v-app>
       </v-card>
-
     </div>
   </div>
 </template>
 <style scoped>
-  .main-head {
-    background: transparent !important;
-  }
+.logo-mobile {
+  margin-top: 5%;
+  border-radius: 50%;
+  border: 1px solid wheat;
+  width: 50px;
+  height: 50px;
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.main-head {
+  background: transparent !important;
+  height: 70px !important;
+}
 
-  .br-left {
-    border-left:solid #d9d9d9 1px;
-  }
-  .tl-header {
-    position: relative;
-    margin-top: 1%;
-  }
+.br-left {
+  border-left: solid #d9d9d9 1px;
+}
+.tl-header {
+  position: relative;
+  margin-top: 1%;
+}
 
-  .fixed {
-    position: fixed;
-  }
+.fixed {
+  position: fixed;
+}
 
-  router-view {
-    z-index: 0;
-  }
+router-view {
+  z-index: 0;
+}
 
-  .x-fixed {
-    overflow-x: hidden;
-    
-  }
+.x-fixed {
+  overflow-x: hidden;
+}
 
-  .icon-footer {
-    height: 80px !important;
-  }
+.icon-footer {
+  height: 80px !important;
+}
 
-  .sticky {
-    position: fixed;
-    z-index: 10;
-    background-color: white;
-    width: 100%;
-  }
+.sticky {
+  position: fixed;
+  z-index: 10;
+  background-color: white;
+  width: 100%;
+}
 
-  .toolbar {
-    width: 100%;
-  }
+.toolbar {
+  width: 100%;
+}
 </style>
 <script>
-  //import HelloWorld from './components/HelloWorld';
+//import HelloWorld from './components/HelloWorld';
+/* eslint-disable */
+export default {
+  name: "App",
 
-  export default {
-    name: "App",
+  components: {
+    //HelloWorld,
+  },
 
-    components: {
-      //HelloWorld,
-    },
-
-    data() {
-      return {
-        mobile: false,
-        search: false
+  data() {
+    return {
+      mobile: false,
+      search: false,
+      cartScroll: false,
+      payable: 0
+    };
+  },
+  created() {
+    window.addEventListener("resize", this.Handler);
+    this.Handler();
+    this.fetchData()
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.Handler);
+  },
+  methods: {
+    Handler() {
+      if (window.innerWidth < 700) {
+        this.mobile = true;
+      } else {
+        this.mobile = false;
       }
     },
-    created() {
-      window.addEventListener("resize", this.Handler);
-      this.Handler();
-      //this.$router.push({name:"card"})
+    fetchData() {
+      var topVal = this.$route.params.top
+      this.payable = this.$route.params.price
+      if(topVal > 200){
+        this.cartScroll = true;
+
+      }else{
+        this.cartScroll = false;
+      }
     },
-    destroyed() {
-      window.removeEventListener("resize", this.Handler);
+    alert() {
+      alert("You click it.");
     },
-    methods: {
-      Handler() {
-        if (window.innerWidth < 700) {
-          this.mobile = true;
-        } else {
-          this.mobile = false;
-        }
-      },
-      alert(){
-        alert("You click it.");
-      },
-      toogle(btn){
-        // btn.preventDefault();
-        //alert(btn)
-        if (btn == "home" && this.$route.path != "/"){
-          this.$router.push({name: "admin"})
-          this.search = false;
-        }else if(btn == "cart" && this.$route.path != "/cart"){
-          this.$router.push({name: "cart"})
-          this.search = false;
-        }else if(btn == "account" && this.$route.path != "/account"){
-          this.$router.push({name: "account"})
-          this.search = false;
-        }else if (btn == "search" && this.$route.path == "/"){
-          this.search = true;
-        }
+    toogle(btn) {
+      // btn.preventDefault();
+      //alert(btn)
+      if (btn == "home" && this.$route.path != "/") {
+        this.$router.push({ name: "admin" });
+        this.search = false;
+      } else if (btn == "cart" && this.$route.path != "/cart") {
+        this.$router.push({ name: "cart" });
+        this.search = false;
+      } else if (btn == "account" && this.$route.path != "/account") {
+        this.$router.push({ name: "account" });
+        this.search = false;
+      } else if (btn == "search" && this.$route.path == "/") {
+        this.search = true;
       }
     }
-  };
+  }
+};
 </script>

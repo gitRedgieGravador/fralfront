@@ -1,6 +1,9 @@
 <template>
   <div id="card">
     <div class="pa-2">
+      <div class="pa-3">
+        <h3>Total payable: Php {{total}} </h3>
+      </div>
       <div v-for="(each, i) in 5" :key="i" class="pt-2 pb-2">
 
         <CartCard></CartCard>
@@ -78,8 +81,22 @@ export default {
   },
   data() {
     return {
-      confirm: false
+      confirm: false,
+      total: 10000.00
     };
+  },
+  created(){
+    window.addEventListener("scroll", this.handleScroll)
+    this.handleScroll();
+    
+  },
+  methods:{
+    handleScroll(){
+      var scrollVal = window.pageYOffset;
+      if(scrollVal > 150){
+        this.$router.push({path:'/cart/'+ this.total + "/" +scrollVal})
+      }
+    }
   }
 };
 </script>
