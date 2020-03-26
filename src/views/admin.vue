@@ -4,20 +4,21 @@
       <v-row class="rm">
         <div v-for="(each, i) in 6" :key="i" class="center">
           <div class="ma-3">
-            <Card @btnAddCart="askForQuan"></Card>
+            <Card @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
           </div>
         </div>
       </v-row>
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="290">
           <v-card>
+            <v-card-title class="headline">RACE Shoes</v-card-title>
             <v-card-title class="headline">Quantity: {{quantity}}</v-card-title>
             <v-row class="text-center">
               <v-col>
                 <v-btn text class="btnInc" @click="btnIncClick">+</v-btn>
               </v-col>
               <v-col>
-                <v-text-field type="number" v-model="quantity" hide-details placeholder="quantity"></v-text-field>
+                <v-text-field class="btnInc" type="number" v-model="quantity" hide-details placeholder="quantity"></v-text-field>
               </v-col>
               <v-col>
                 <v-btn text class="btnInc" @click="btnDecClick">-</v-btn>
@@ -34,6 +35,19 @@
                 </v-col>
               </v-row>
             </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
+
+      <v-row>
+        <v-dialog v-model="dialogDetails" persistent max-width="290">
+          <v-card>
+            <v-card-title class="headline">Details</v-card-title>
+            <v-card-text>details apears here.</v-card-text>
+            <v-spacer></v-spacer>
+            <v-row>
+              <v-btn block color="green darken-1" @click="dialogDetails = false">Back</v-btn>
+            </v-row>
           </v-card>
         </v-dialog>
       </v-row>
@@ -69,6 +83,7 @@ export default {
   },
   data() {
     return {
+      dialogDetails: false,
       quantity: 1,
       dialog: false,
       admin: "",
@@ -112,6 +127,9 @@ export default {
       if (parseInt(this.quantity) > 2) {
         this.quantity = parseInt(this.quantity) - 1;
       }
+    },
+    showDetails() {
+      this.dialogDetails = true;
     }
   }
 };
