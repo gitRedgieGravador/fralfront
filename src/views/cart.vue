@@ -1,8 +1,11 @@
 <template>
     <div id="card">
-        <v-card width="200" height="200">
-           dsah
-        </v-card>
+        <table>
+            <tr>
+                <td>fsdf</td>
+                <td>fsdfasdf</td>
+            </tr>
+        </table>
     </div>
 </template>
 <script>
