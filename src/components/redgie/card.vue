@@ -4,11 +4,18 @@
       <center>
         <v-card class="d-inline-block mx-auto" width="150px">
           <v-container>
-            <p class="price">2500.00</p>
             <v-row>
               <v-img height="120" width="130" src="~@/assets/yellow.jpg" class="item"></v-img>
             </v-row>
-            <p class="name">name</p>
+            <v-row class="nopadding">
+              <v-col class="nopadding">
+                <p class="name">Baygon</p>
+              </v-col >
+              <v-col cols="5" class="nopadding">
+                <p class="price">150.00</p>
+              </v-col>
+            </v-row>
+
             <v-row class="footer">
               <v-col cols="6">
                 <v-btn block outlined color="success" class="action" @click="btnAddCart">
@@ -28,9 +35,13 @@
   </div>
 </template>
 <style scoped>
+.nopadding {
+  padding: 0px !important;
+}
 .name {
-    font-size: 12px;
-    position: relative;
+  font-size: 12px;
+  position: relative;
+  margin: 0px !important;
 }
 .footer {
   bottom: 0px;
@@ -47,7 +58,7 @@
   margin-bottom: -12px;
   margin-right: 30%;
   z-index: 3;
-  font-size: 16px;
+  font-size: 12px;
 }
 .action {
   font-size: 8px;
@@ -63,12 +74,12 @@ export default {
   component: {
     //card
   },
-  methods:{
-    btnAddCart (event) {
-      this.$emit('btnAddCart')
+  methods: {
+    btnAddCart(event) {
+      this.$emit("btnAddCart");
     },
-    btnDetails (event) {
-      this.$emit('btnDetails')
+    btnDetails(event) {
+      this.$emit("btnDetails");
     }
   }
 };

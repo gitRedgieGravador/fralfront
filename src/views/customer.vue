@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <!-- items -->
       <v-row class="rm">
         <div v-for="(each, i) in 6" :key="i" class="center">
           <div class="ma-3">
@@ -8,37 +9,58 @@
           </div>
         </div>
       </v-row>
+
+      <!-- dialog for quantity starts here -->
       <v-row justify="center">
-        <v-dialog v-model="dialog" persistent max-width="290">
+        <v-dialog v-model="dialog" persistent width="290">
           <v-card>
-            <v-card-title class="headline">RACE Shoes</v-card-title>
-            <v-card-title class="headline">Quantity: {{quantity}}</v-card-title>
+            <v-row class="ml-3">
+              <v-col cols="10" class="bright nopadding">
+                <v-row>
+                  <v-col class="nopadding">
+                    <img class="my-img" height="100" width="100" src="~@/assets/yellow.jpg">
+                  </v-col>
+                  <v-col class="cd-details">
+                    <h3>RACE Yellow</h3>
+                    <h5>1500</h5>
+                    <h3><code>{{quantity}}</code> pairs</h3>
+                    <h5>#shoes #male</h5>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+            <hr>
             <v-row class="text-center">
               <v-col>
                 <v-btn text class="btnInc" @click="btnIncClick">+</v-btn>
               </v-col>
               <v-col>
-                <v-text-field class="btnInc" type="number" v-model="quantity" hide-details placeholder="quantity"></v-text-field>
+                <v-text-field
+                  class="btnInc"
+                  type="number"
+                  v-model="quantity"
+                  hide-details
+                ></v-text-field>
               </v-col>
               <v-col>
                 <v-btn text class="btnInc" @click="btnDecClick">-</v-btn>
               </v-col>
             </v-row>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-row>
-                <v-col>
-                  <v-btn block color="green darken-1" text @click="dialog = false">Cancel</v-btn>
-                </v-col>
-                <v-col>
-                  <v-btn block color="green darken-1" text @click="dialog = false">Add to Cart</v-btn>
-                </v-col>
-              </v-row>
-            </v-card-actions>
+
+            <v-spacer></v-spacer>
+            <v-row class="pl-2 pr-2">
+              <v-col>
+                <v-btn block color="secondary darken-1" @click="dialog = false">Cancel</v-btn>
+              </v-col>
+              <v-col>
+                <v-btn block color="red darken-1" @click="dialog = false">Add to Cart</v-btn>
+              </v-col>
+            </v-row>
           </v-card>
         </v-dialog>
       </v-row>
-
+      <!-- dialog for quantity ends -->
+      <!-- dialog for details start -->
       <v-row>
         <v-dialog v-model="dialogDetails" persistent max-width="290">
           <v-card>
@@ -46,11 +68,12 @@
             <v-card-text>details apears here.</v-card-text>
             <v-spacer></v-spacer>
             <v-row>
-              <v-btn block color="secondary darken-1" @click="dialogDetails = false">Back</v-btn>
+              <v-btn block color="primary darken-1" @click="dialogDetails = false">Back</v-btn>
             </v-row>
           </v-card>
         </v-dialog>
       </v-row>
+      <!-- dialog for details ends -->
     </div>
     <br>
     <br>
@@ -58,6 +81,9 @@
   </div>
 </template>
 <style>
+.test {
+  border: 1px solid;
+}
 #quantity {
   font-size: 35px;
 }
@@ -71,6 +97,9 @@
 }
 .btnInc {
   font-size: 35px !important;
+}
+.nopadding {
+  padding: 0px !important;
 }
 </style>
 <script>
@@ -86,20 +115,7 @@ export default {
     return {
       dialogDetails: false,
       quantity: 1,
-      dialog: false,
-      admin: "",
-      students: [],
-      search: "",
-      headers: [
-        {
-          text: "ID",
-          align: "start",
-          sortable: false,
-          value: "id"
-        },
-        { text: "Name", value: "name" },
-        { text: "Year", value: "level" }
-      ]
+      dialog: false
     };
   },
 

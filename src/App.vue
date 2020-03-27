@@ -33,7 +33,7 @@
             <img src="~@/assets/logo.png" class="logo-mobile">
           </v-toolbar>
           <v-toolbar dense class="toolbar" v-if="search">
-            <v-text-field hide-details placeholder="search"></v-text-field>
+            <v-text-field  hide-details placeholder="search"></v-text-field>
             <v-btn icon>
               <v-icon>mdi mdi-magnify</v-icon>
             </v-btn>
@@ -73,6 +73,7 @@
   </div>
 </template>
 <style scoped>
+
 .logo-mobile {
   margin-top: 5%;
   border-radius: 50%;
@@ -127,10 +128,14 @@ router-view {
   background-color: white;
   width: 100%;
 }
-
+.searchCol {
+  color: white !important;
+}
 .toolbar {
   width: 100%;
-}
+  /* background-color: rgb(140, 140, 140) !important;
+  color: white !important; */
+} 
 </style>
 <script>
 //import HelloWorld from './components/HelloWorld';
@@ -186,7 +191,7 @@ export default {
       // btn.preventDefault();
       //alert(btn)
       if (btn == "home" && this.$route.path != "/") {
-        this.$router.push({ name: "admin" });
+        this.$router.push({ name: "customer" });
         this.search = false;
       } else if (btn == "cart" && this.$route.path != "/cart") {
         this.$router.push({ name: "cart" });
