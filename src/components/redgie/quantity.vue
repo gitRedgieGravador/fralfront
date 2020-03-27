@@ -35,10 +35,13 @@
       <v-spacer></v-spacer>
       <v-row class="pl-2 pr-2">
         <v-col>
-          <v-btn block color="secondary darken-1" @click="btnCancel">Cancel</v-btn>
+          <v-btn block color="secondary" @click="btnCancel" dark>Cancel</v-btn>
         </v-col>
-        <v-col>
-          <v-btn block color="red darken-1" @click="btnAddtoCart">Add to Cart</v-btn>
+        <v-col v-if="!inCart">
+          <v-btn block color="red" @click="btnAddtoCart" dark>Add to Cart</v-btn>
+        </v-col>
+        <v-col v-if="inCart">
+          <v-btn block color="green" @click="btnAddtoCart" dark>Save</v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -71,7 +74,8 @@
 export default {
   name: "quantity",
   props: {
-    item: Object
+    item: Object,
+    inCart: Boolean
   },
   data() {
     return {

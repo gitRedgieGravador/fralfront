@@ -59,7 +59,7 @@
                 <v-icon>mdi mdi-account-outline</v-icon>
               </v-col>
               <v-col
-                v-if="this.$route.path == '/'"
+                v-if="this.$route.name == 'customer'"
                 class="text-center br-left"
                 @click="toogle('search')"
               >
@@ -158,10 +158,6 @@ export default {
   created() {
     window.addEventListener("resize", this.Handler);
     this.Handler();
-    this.fetchData()
-  },
-  watch: {
-    '$route': 'fetchData'
   },
   destroyed() {
     window.removeEventListener("resize", this.Handler);
@@ -174,32 +170,21 @@ export default {
         this.mobile = false;
       }
     },
-    fetchData() {
-      var name = this.$route.name
-      this.payable = this.$route.params.price
-      if(name == 'cart2'){
-        this.cartScroll = true;
-
-      }else{
-        this.cartScroll = false;
-      }
-    },
     alert() {
       alert("You click it.");
     },
     toogle(btn) {
-      // btn.preventDefault();
-      //alert(btn)
-      if (btn == "home" && this.$route.path != "/") {
+      //console.log(btn, this.$route.name);
+      if (btn == "home" && this.$route.name != "customer") {
         this.$router.push({ name: "customer" });
         this.search = false;
-      } else if (btn == "cart" && this.$route.path != "/cart") {
+      } else if (btn == "cart" && this.$route.name != "cart") {
         this.$router.push({ name: "cart" });
         this.search = false;
-      } else if (btn == "account" && this.$route.path != "/account") {
+      } else if (btn == "account" && this.$route.name != "account") {
         this.$router.push({ name: "account" });
         this.search = false;
-      } else if (btn == "search" && this.$route.path == "/") {
+      } else if (btn == "search" && this.$route.name == "customer") {
         this.search = true;
       }
     }

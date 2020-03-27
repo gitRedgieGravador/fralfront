@@ -18,11 +18,11 @@
         </v-col>
         <v-col class="ml-2">
             <v-row>
-            <v-icon>mdi mdi-table-edit</v-icon>
+            <v-icon color="green" @click="btnEdit(item.id)">mdi mdi-table-edit</v-icon>
             </v-row>
             <br>
             <v-row>
-            <v-icon>mdi mdi-delete</v-icon>
+            <v-icon color="red" @click="btnDelete(item.id)">mdi mdi-delete</v-icon>
             </v-row>
         </v-col>
         </v-row>
@@ -63,6 +63,14 @@ export default {
   data() {
     return {
     };
+  },
+  methods:{
+    btnEdit(id){
+      this.$emit("btnEdit", id);
+    },
+    btnDelete(id){
+      this.$emit("btnDelete", id);
+    }
   }
 };
 </script>

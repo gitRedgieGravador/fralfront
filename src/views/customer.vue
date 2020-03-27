@@ -13,49 +13,7 @@
       <!-- dialog for quantity starts here -->
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent width="290">
-          <QuanCard :item="items[1]" @btnCancel="dialog = false" @btnAddtoCart="dialog = false"></QuanCard>
-          <!-- <v-card>
-            <v-row class="ml-3">
-              <v-col cols="10" class="bright nopadding">
-                <v-row>
-                  <v-col class="nopadding">
-                    <img class="my-img" height="100" width="100" src="~@/assets/yellow.jpg">
-                  </v-col>
-                  <v-col class="cd-details">
-                    <h3>Baygon</h3>
-                    <h5>150</h5>
-                    <h3>
-                      <code>{{quantity}}</code> pairs
-                    </h3>
-                    <h5>#disinfectant</h5>
-                  </v-col>
-                </v-row>
-              </v-col>
-            </v-row>
-            <hr>
-            <v-row class="text-center">
-              <v-col>
-                <v-btn text class="btnInc" @click="btnDecClick">-</v-btn>
-              </v-col>
-
-              <v-col>
-                <v-text-field class="btnInc" type="number" v-model="quantity" hide-details></v-text-field>
-              </v-col>
-              <v-col>
-                <v-btn text class="btnInc" @click="btnIncClick">+</v-btn>
-              </v-col>
-            </v-row>
-
-            <v-spacer></v-spacer>
-            <v-row class="pl-2 pr-2">
-              <v-col>
-                <v-btn block color="secondary darken-1" @click="dialog = false">Cancel</v-btn>
-              </v-col>
-              <v-col>
-                <v-btn block color="red darken-1" @click="dialog = false">Add to Cart</v-btn>
-              </v-col>
-            </v-row>
-          </v-card>-->
+          <QuanCard :inCart="false" :item="items[1]" @btnCancel="dialog = false" @btnAddtoCart="dialog = false"></QuanCard>
         </v-dialog>
       </v-row>
       <!-- dialog for quantity ends -->

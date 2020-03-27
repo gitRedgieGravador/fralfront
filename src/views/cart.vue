@@ -1,38 +1,65 @@
 <template>
   <div id="card">
     <div class="pa-2">
-      <div class="pa-3">
-        <h3>Total payable: Php {{total}}</h3>
-      </div>
-      <div v-for="(each, i) in cart" :key="i" class="pt-2 pb-2">
-        <CartCard :item="each"></CartCard>
+      <div v-if="!isCheckout">
+        <div v-for="(each, i) in itemsCart" :key="i" class="pt-2 pb-2">
+          <CartCard :item="each" @btnEdit="handleEdit"></CartCard>
+        </div>
       </div>
       <br>
-      <v-card outlined class="pa-2">
-        <h3>Delivery Infomation</h3>
-        <v-row>
-          <v-col cols="10">
-            <h5>Address: Basak Lapu lapu city</h5>
-            <h5>Mobile: 09123456789</h5>
-          </v-col>
-          <v-col>
-            <v-icon>mdi mdi-table-edit</v-icon>
-          </v-col>
-        </v-row>
-        <v-footer class="nopadding confooter">
-          <v-row class="ml-5 conElem">
-            <v-col>
-              <v-switch v-model="confirm" class="ma-2"></v-switch>
+      <div v-if="isCheckout">
+        <!-- receipt  -->
+        <v-card outlined>
+          <Checkout :items="itemsCart"></Checkout>
+        </v-card><br>
+
+        <!-- Confirm -->
+        <v-card outlined class="pa-2">
+          <h3>Delivery Infomation</h3>
+          <v-row>
+            <v-col cols="10">
+              <h5>Address: Basak Lapu lapu city</h5>
+              <h5>Mobile: 09123456789</h5>
+              <h5>Payable: {{new Intl.NumberFormat().format(total)}}</h5>
             </v-col>
             <v-col>
-              <h3 id="conf-tx">Confirm</h3>
+              <v-icon>mdi mdi-table-edit</v-icon>
             </v-col>
           </v-row>
-        </v-footer>
-      </v-card>
-      <br>
-      <v-btn id="btnOrder" color="red" block :disabled="!confirm">Order Now</v-btn>
+          <v-footer class="nopadding confooter">
+            <v-row class="ml-5 conElem">
+              <v-col>
+                <v-switch v-model="confirm" class="ma-2"></v-switch>
+              </v-col>
+              <v-col>
+                <h3 id="conf-tx">Confirm</h3>
+              </v-col>
+            </v-row>
+          </v-footer>
+        </v-card><br>
 
+        <!-- Order Button -->
+        <v-btn dark id="btnOrder" color="red" block :disabled="!confirm">
+          <b>Order Now</b>
+        </v-btn>
+      </div>
+    
+      <v-btn block v-if="!isCheckout" dark id="btnOrder" color="red" @click="isCheckout = true">
+        <b>Check Out</b>
+      </v-btn>
+      <!-- dialog for quantity starts here -->
+
+      <v-row justify="center">
+        <v-dialog v-model="dialog" persistent width="290">
+          <QuanCard
+            :inCart="true"
+            :item="itemsCart[1]"
+            @btnCancel="dialog = false"
+            @btnAddtoCart="dialog = false"
+          ></QuanCard>
+        </v-dialog>
+      </v-row>
+      <!-- dialog for quantity ends -->
       <br>
       <br>
       <br>
@@ -67,59 +94,84 @@
   padding-left: 10px !important;
   padding-left: 7% !important;
 }
+.sticky {
+  position: fixed;
+  z-index: 8;
+  width: 100%;
+  margin-left: -4.5%;
+  margin-top: -2%;
+}
 </style>
 
 <script>
 /* eslint-disable */
 import CartCard from "../components/redgie/CartCard.vue";
+import QuanCard from "../components/redgie/quantity";
+import Checkout from "../components/redgie/checkout";
 export default {
   name: "card",
   components: {
-    CartCard
+    CartCard,
+    QuanCard,
+    Checkout
   },
   data() {
     return {
+      isCheckout: false,
       confirm: false,
       total: 10000.0,
       pathName: "",
-      cart:[
+      dialog: false,
+      editId: null,
+      itemsCart: [
         {
-        src:"~@/assets/yellow.jpg",
-        name: "Baygon",
-        price: 150.00,
-        category: "#disinfectant",
-        quantity: 2
-      },{
-        src:"~@/assets/yellow.jpg",
-        name: "Baygon",
-        price: 150.00,
-        category: "#disinfectant",
-        quantity: 2
-      },{
-        src:"~@/assets/yellow.jpg",
-        name: "Baygon",
-        price: 150.00,
-        category: "#disinfectant",
-        quantity: 2
-      },{
-        src:"~@/assets/yellow.jpg",
-        name: "Baygon",
-        price: 150.00,
-        category: "#disinfectant",
-        quantity: 2
-      },{
-        src:"~@/assets/yellow.jpg",
-        name: "Baygon",
-        price: 150.00,
-        category: "#disinfectant",
-        quantity: 2
-      },{
-        src:"~@/assets/yellow.jpg",
-        name: "Baygon",
-        price: 150.00,
-        category: "#disinfectant",
-        quantity: 2
-      }
+          id: 1,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 2,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 3,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 4,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 5,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 6,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        }
       ]
     };
   },
@@ -135,17 +187,17 @@ export default {
     handleScroll() {
       var scrollVal = window.pageYOffset;
       if (scrollVal > 150) {
-        if (this.$route.name != "cart2") {
-          this.$router.push({ path: "/cart/" + this.total});
-        }
+        //
       } else {
-        if (this.$route.name != "cart") {
-          this.$router.push({ name:"cart"});
-        }
+        //
       }
     },
     watchRoute() {
       //console.log(this.$route.name);
+    },
+    handleEdit(id) {
+      this.editId = id;
+      this.dialog = true;
     }
   }
 };
