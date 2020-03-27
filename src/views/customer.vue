@@ -23,7 +23,9 @@
                   <v-col class="cd-details">
                     <h3>RACE Yellow</h3>
                     <h5>1500</h5>
-                    <h3><code>{{quantity}}</code> pairs</h3>
+                    <h3>
+                      <code>{{quantity}}</code> pairs
+                    </h3>
                     <h5>#shoes #male</h5>
                   </v-col>
                 </v-row>
@@ -32,18 +34,14 @@
             <hr>
             <v-row class="text-center">
               <v-col>
-                <v-btn text class="btnInc" @click="btnIncClick">+</v-btn>
-              </v-col>
-              <v-col>
-                <v-text-field
-                  class="btnInc"
-                  type="number"
-                  v-model="quantity"
-                  hide-details
-                ></v-text-field>
-              </v-col>
-              <v-col>
                 <v-btn text class="btnInc" @click="btnDecClick">-</v-btn>
+              </v-col>
+
+              <v-col>
+                <v-text-field class="btnInc" type="number" v-model="quantity" hide-details></v-text-field>
+              </v-col>
+              <v-col>
+                <v-btn text class="btnInc" @click="btnIncClick">+</v-btn>
               </v-col>
             </v-row>
 
