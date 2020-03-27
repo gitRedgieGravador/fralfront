@@ -8,11 +8,9 @@
               <img class="my-img" height="100" width="100" src="~@/assets/yellow.jpg">
             </v-col>
             <v-col class="cd-details">
-              <h3>{{item.name}}</h3>
+              <h5>{{item.name}}</h5>
               <h5>{{item.price}}</h5>
-              <h3>
-                <p>{{quantity}}</p> pairs
-              </h3>
+              <h5>{{quantity}} pairs</h5>
               <h5>{{item.category}}</h5>
             </v-col>
           </v-row>
@@ -82,8 +80,8 @@ export default {
       quantity: 1
     };
   },
-  beforeCreated(){
-      this.quantity = this.item.quantity
+  beforeCreated() {
+    this.quantity = this.item.quantity;
   },
   methods: {
     btnIncClick() {
@@ -96,12 +94,15 @@ export default {
     },
     btnCancel() {
       this.$emit("btnCancel");
+      this.quantity = null;
     },
     btnAddtoCart() {
       this.$emit("btnAddtoCart", this.quantity);
+      this.quantity = null;
     },
     btnSave() {
-      this.$emit("btnSave", this.quantity); 
+      this.$emit("btnSave", this.quantity);
+      this.quantity = null;
     }
   }
 };

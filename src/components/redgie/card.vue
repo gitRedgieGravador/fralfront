@@ -1,29 +1,29 @@
 <template>
   <div>
-    <div>
+    <div v-if="data != null">
       <center>
-        <v-card class="d-inline-block mx-auto" width="150px">
+        <v-card class="d-inline-block mx-auto" width="150" height="230">
           <v-container>
             <v-row>
-              <v-img height="120" width="130" src="~@/assets/yellow.jpg" class="item"></v-img>
+              <v-img height="120" width="130" :src="url" class="item"></v-img>
             </v-row>
             <v-row class="nopadding">
               <v-col class="nopadding">
-                <p class="name">{{items.name}}</p>
+                <p class="name">{{data.name}}</p>
               </v-col >
               <v-col cols="5" class="nopadding">
-                <p class="price">{{items.price}}</p>
+                <p class="price">{{data.price}}</p>
               </v-col>
             </v-row>
 
             <v-row class="footer">
               <v-col cols="6">
-                <v-btn block outlined color="success" class="action" @click="btnAddCart(items.id)">
+                <v-btn block outlined color="success" class="action" @click="btnAddCart(data.id)">
                   <v-icon>mdi mdi-cart</v-icon>
                 </v-btn>
               </v-col>
               <v-col cols="6">
-                <v-btn block outlined color="primary" class="action" @click="btnDetails(items.id)">
+                <v-btn block outlined color="primary" class="action" @click="btnDetails(data.id)">
                   <v-icon>mdi mdi-information-outline</v-icon>
                 </v-btn>
               </v-col>
@@ -70,9 +70,19 @@
 /* eslint-disable */
 
 export default {
-  name: "cart",
-  props:{
-    items: Object
+  name: "card",
+  props: {
+    item: Object
+  },
+  data(){
+    return{
+      url:"",
+      data: null
+    }
+  },
+  mounted(){
+    this.url = 'https://gmbuck.s3.amazonaws.com/gm/' + this.item.src;
+    this.data = this.item;
   },
   component: {
     //card

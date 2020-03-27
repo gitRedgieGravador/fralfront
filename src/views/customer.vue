@@ -5,7 +5,8 @@
       <v-row class="rm">
         <div v-for="(each, i) in items" :key="i" class="center">
           <div class="ma-3">
-            <Card :items="each" @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
+            
+            <Card :item="items[i]" @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
           </div>
         </div>
       </v-row>
@@ -79,49 +80,54 @@ export default {
       items: [
         {
           id: 1,
-          src: "~@/assets/yellow.jpg",
+          src: "yellow.jpg",
           name: "Baygon",
           price: 150.0,
           category: "#disinfectant",
-          quantity: 2
+          quantity: 2,
+          label:"pcs"
         },
         {
           id: 2,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
-          price: 150.0,
-          category: "#disinfectant",
-          quantity: 2
+          src: "blackshirts.jpg",
+          name: "Plain t-shirt",
+          price: 100.0,
+          category: "#shirt",
+          quantity: 2,
+          label:"pcs"
         },
         {
           id: 3,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
-          price: 150.0,
-          category: "#disinfectant",
-          quantity: 2
+          src: "timexIndigo.png",
+          name: "Timex Indigo",
+          price: 2500.0,
+          category: "#watch",
+          quantity: 2,
+          label:"pcs"
         },
         {
           id: 4,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
+          src: "photomagicmug.png",
+          name: "Photo Mug",
           price: 150.0,
-          category: "#disinfectant",
-          quantity: 2
+          category: "#mug",
+          quantity: 2,
+          label:"pcs"
         },
         {
           id: 5,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
-          price: 150.0,
-          category: "#disinfectant",
-          quantity: 2
+          src: "30mBlueCat5Rj45.png",
+          name: "30m Cat5 RJ45",
+          price: 450.0,
+          category: "#rj45 cable",
+          quantity: 2,
+          label:"meter"
         },
         {
           id: 6,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
-          price: 150.0,
+          src: "shoes.jpg",
+          name: "Black Tiktak",
+          price: 250.0,
           category: "#disinfectant",
           quantity: 2
         }
@@ -149,7 +155,7 @@ export default {
       this.dialog = true;
     },
     
-    showDetails() {
+    showDetails(id) {
       this.dialogDetails = true;
     }
   }
