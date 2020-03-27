@@ -7,7 +7,7 @@
     </v-card>
     <v-img
       class="user_image"
-      src="https://professionalsofthefuture.com/wp-content/uploads/2018/12/user-icon.png"
+      src="~@/assets/account.png"
     ></v-img>
     <br>
     <p class="name">{{data.name}}</p>
@@ -58,6 +58,7 @@
   width: 140px;
   margin-left: 27%;
   margin-top: -20%;
+  border-radius: 10%;
 }
 .name {
   font-weight: 700;
