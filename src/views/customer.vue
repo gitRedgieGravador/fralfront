@@ -3,7 +3,7 @@
     <div>
       <!-- items -->
       <v-row class="rm">
-        <div v-for="(each, i) in 6" :key="i" class="center">
+        <div v-for="(each, i) in items" :key="i" class="center">
           <div class="ma-3">
             <Card @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
           </div>
@@ -13,7 +13,8 @@
       <!-- dialog for quantity starts here -->
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent width="290">
-          <v-card>
+          <QuanCard :item="items[1]" @btnCancel="dialog = false" @btnAddtoCart="dialog = false"></QuanCard>
+          <!-- <v-card>
             <v-row class="ml-3">
               <v-col cols="10" class="bright nopadding">
                 <v-row>
@@ -54,7 +55,7 @@
                 <v-btn block color="red darken-1" @click="dialog = false">Add to Cart</v-btn>
               </v-col>
             </v-row>
-          </v-card>
+          </v-card>-->
         </v-dialog>
       </v-row>
       <!-- dialog for quantity ends -->
@@ -104,16 +105,68 @@
 /* eslint-disable */
 import helper from "../helper/axios";
 import Card from "../components/redgie/card";
+import QuanCard from "../components/redgie/quantity";
 export default {
   name: "customer",
   components: {
-    Card
+    Card,
+    QuanCard
   },
   data() {
     return {
       dialogDetails: false,
       quantity: 1,
-      dialog: false
+      dialog: false,
+      items: [
+        {
+          id: 1,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 2,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 3,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 4,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 5,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        },
+        {
+          id: 6,
+          src: "~@/assets/yellow.jpg",
+          name: "Baygon",
+          price: 150.0,
+          category: "#disinfectant",
+          quantity: 2
+        }
+      ]
     };
   },
 
@@ -135,14 +188,7 @@ export default {
     askForQuan() {
       this.dialog = true;
     },
-    btnIncClick() {
-      this.quantity = parseInt(this.quantity) + 1;
-    },
-    btnDecClick() {
-      if (parseInt(this.quantity) > 2) {
-        this.quantity = parseInt(this.quantity) - 1;
-      }
-    },
+    
     showDetails() {
       this.dialogDetails = true;
     }
