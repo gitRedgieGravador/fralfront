@@ -21,12 +21,12 @@
                     <img class="my-img" height="100" width="100" src="~@/assets/yellow.jpg">
                   </v-col>
                   <v-col class="cd-details">
-                    <h3>RACE Yellow</h3>
-                    <h5>1500</h5>
+                    <h3>Baygon</h3>
+                    <h5>150</h5>
                     <h3>
                       <code>{{quantity}}</code> pairs
                     </h3>
-                    <h5>#shoes #male</h5>
+                    <h5>#disinfectant</h5>
                   </v-col>
                 </v-row>
               </v-col>

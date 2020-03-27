@@ -85,47 +85,41 @@ export default {
       cart:[
         {
         src:"~@/assets/yellow.jpg",
-        name: "Race yellow",
-        price: 1500.00,
-        category: "#Shoes #Male",
+        name: "Baygon",
+        price: 150.00,
+        category: "#disinfectant",
         quantity: 2
       },{
         src:"~@/assets/yellow.jpg",
-        name: "Race yellow",
-        price: 1500.00,
-        category: "#Shoes #Male",
+        name: "Baygon",
+        price: 150.00,
+        category: "#disinfectant",
         quantity: 2
       },{
         src:"~@/assets/yellow.jpg",
-        name: "Race yellow",
-        price: 1500.00,
-        category: "#Shoes #Male",
+        name: "Baygon",
+        price: 150.00,
+        category: "#disinfectant",
         quantity: 2
       },{
         src:"~@/assets/yellow.jpg",
-        name: "Race yellow",
-        price: 1500.00,
-        category: "#Shoes #Male",
+        name: "Baygon",
+        price: 150.00,
+        category: "#disinfectant",
         quantity: 2
       },{
         src:"~@/assets/yellow.jpg",
-        name: "Race yellow",
-        price: 1500.00,
-        category: "#Shoes #Male",
+        name: "Baygon",
+        price: 150.00,
+        category: "#disinfectant",
         quantity: 2
       },{
         src:"~@/assets/yellow.jpg",
-        name: "Race yellow",
-        price: 1500.00,
-        category: "#Shoes #Male",
+        name: "Baygon",
+        price: 150.00,
+        category: "#disinfectant",
         quantity: 2
-      },{
-        src:"~@/assets/yellow.jpg",
-        name: "Race yellow",
-        price: 1500.00,
-        category: "#Shoes #Male",
-        quantity: 2
-      },
+      }
       ]
     };
   },
