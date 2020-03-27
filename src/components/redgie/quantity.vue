@@ -11,7 +11,7 @@
               <h3>{{item.name}}</h3>
               <h5>{{item.price}}</h5>
               <h3>
-                <code>{{item.quantity}}</code> pairs
+                <p>{{quantity}}</p> pairs
               </h3>
               <h5>{{item.category}}</h5>
             </v-col>
@@ -41,7 +41,7 @@
           <v-btn block color="red" @click="btnAddtoCart" dark>Add to Cart</v-btn>
         </v-col>
         <v-col v-if="inCart">
-          <v-btn block color="green" @click="btnAddtoCart" dark>Save</v-btn>
+          <v-btn block color="green" @click="btnSave" dark>Save</v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -79,17 +79,18 @@ export default {
   },
   data() {
     return {
-      quantity: 2
+      quantity: 1
     };
+  },
+  created(){
+      this.quantity = this.item.quantity
   },
   methods: {
     btnIncClick() {
-      this.item.quantity = parseInt(this.item.quantity) + 1;
       this.quantity = parseInt(this.quantity) + 1;
     },
     btnDecClick() {
-      if (parseInt(this.item.quantity) > 2) {
-        this.item.quantity = parseInt(this.item.quantity) - 1;
+      if (parseInt(this.quantity) > 1) {
         this.quantity = parseInt(this.quantity) - 1;
       }
     },
@@ -97,7 +98,10 @@ export default {
       this.$emit("btnCancel");
     },
     btnAddtoCart() {
-      this.$emit("btnAddtoCart");
+      this.$emit("btnAddtoCart", this.quantity);
+    },
+    btnSave() {
+      this.$emit("btnSave", this.quantity);
     }
   }
 };
