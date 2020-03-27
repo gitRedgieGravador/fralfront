@@ -11,7 +11,21 @@
         <!-- receipt  -->
         <v-card outlined>
           <Checkout :items="itemsCart"></Checkout>
-        </v-card><br>
+        </v-card>
+        <br>
+        <!-- Total area -->
+
+        <v-card outlined>
+          <v-row class="text-center">
+            <v-col>
+              <h3>Total:</h3>
+            </v-col>
+            <v-col>
+              <h3>{{new Intl.NumberFormat().format(total)}}</h3>
+            </v-col>
+          </v-row>
+        </v-card>
+        <br>
 
         <!-- Confirm -->
         <v-card outlined class="pa-2">
@@ -36,14 +50,15 @@
               </v-col>
             </v-row>
           </v-footer>
-        </v-card><br>
+        </v-card>
+        <br>
 
         <!-- Order Button -->
         <v-btn dark id="btnOrder" color="red" block :disabled="!confirm">
           <b>Order Now</b>
         </v-btn>
       </div>
-    
+
       <v-btn block v-if="!isCheckout" dark id="btnOrder" color="red" @click="isCheckout = true">
         <b>Check Out</b>
       </v-btn>
