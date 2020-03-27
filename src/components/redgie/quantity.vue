@@ -85,10 +85,12 @@ export default {
   methods: {
     btnIncClick() {
       this.item.quantity = parseInt(this.item.quantity) + 1;
+      this.quantity = parseInt(this.quantity) + 1;
     },
     btnDecClick() {
       if (parseInt(this.item.quantity) > 2) {
         this.item.quantity = parseInt(this.item.quantity) - 1;
+        this.quantity = parseInt(this.quantity) - 1;
       }
     },
     btnCancel() {
