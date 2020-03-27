@@ -30,14 +30,14 @@
 
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card class="dialog_card">
-        <v-card-title>Edit Information</v-card-title>
-        <v-text-field v-model="data.name" required>{{data.name}}</v-text-field>
-        <v-text-field v-model="data.address" required>{{data.address}}</v-text-field>
-        <v-text-field v-model="data.number" required>{{data.number}}</v-text-field>
+        <v-card-title class="title mb-4">Edit Information</v-card-title>
+        <v-text-field label="Name" outlined v-model="data.name" required>{{data.name}}</v-text-field>
+        <v-text-field label="Address" outlined v-model="data.address" required>{{data.address}}</v-text-field>
+        <v-text-field label="Cellphone No." outlined v-model="data.number" required>{{data.number}}</v-text-field>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="dialog = false">Cancel</v-btn>
-          <v-btn color="green darken-1" text @click="dialog = false">Save</v-btn>
+          <v-btn color="red darken-1" text @click="dialog = false">Cancel</v-btn>
+          <v-btn color="green darken-1" text @click="save">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -60,6 +60,9 @@
 }
 .background {
   position: relative;
+}
+.title{
+  background-color: lightgreen;
 }
 </style>
 
@@ -85,6 +88,12 @@ export default {
     },
     logout() {
       this.$router.push("/home");
+    },
+    save(){
+      this.dialog = false;
+      this.name = this.name;
+      this.address = this.address;
+      this.number = this.number;
     }
   }
 };
