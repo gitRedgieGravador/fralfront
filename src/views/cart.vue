@@ -51,14 +51,12 @@
             </v-row>
           </v-footer>
         </v-card>
-        <br>
-
-        <!-- Order Button -->
-        <v-btn dark id="btnOrder" color="red" block :disabled="!confirm">
-          <b>Order Now</b>
-        </v-btn>
       </div>
-
+      <br>
+      <!-- Order Button -->
+      <v-btn block dark v-if="isCheckout" id="btnOrder" color="red" :disabled="!confirm">
+        <b>Order Now</b>
+      </v-btn>
       <v-btn block v-if="!isCheckout" dark id="btnOrder" color="red" @click="isCheckout = true">
         <b>Check Out</b>
       </v-btn>
