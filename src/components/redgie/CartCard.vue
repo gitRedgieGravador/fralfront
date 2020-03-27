@@ -27,8 +27,6 @@
         </v-col>
         </v-row>
     </v-card>
-
-    
   </div>
 </template>
 <style scoped>

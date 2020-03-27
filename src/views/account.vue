@@ -36,8 +36,16 @@
         <v-text-field label="Cellphone No." outlined v-model="data.number" required>{{data.number}}</v-text-field>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="red darken-1" text @click="dialog = false">Cancel</v-btn>
-          <v-btn color="green darken-1" text @click="save">Save</v-btn>
+          <v-col cols="6">
+            <v-btn @click="dialog = false" block outlined color="red" class="action">
+              <v-icon>mdi mdi-window-close</v-icon>Cancel
+            </v-btn>
+          </v-col>
+          <v-col cols="6">
+            <v-btn @click="dialog = false" block outlined color="success" class="action">
+              <v-icon>mdi mdi-check</v-icon>Save
+            </v-btn>
+          </v-col>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -73,7 +81,7 @@ export default {
     return {
       data: {
         name: "Redgie Gravador",
-        address: "Talamban, Cebu City",
+        address: "Basak Lapu lapu city",
         number: "09123456789"
       },
       dialog: false
@@ -86,7 +94,7 @@ export default {
     logout() {
       this.$router.push("/home");
     },
-    save(){
+    save() {
       this.dialog = false;
       this.name = this.name;
       this.address = this.address;
