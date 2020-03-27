@@ -61,9 +61,6 @@
 .background {
   position: relative;
 }
-.title{
-  background-color: lightgreen;
-}
 </style>
 
 <script>
