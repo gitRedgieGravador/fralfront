@@ -9,10 +9,10 @@
                 <img class="my-img" height="100" width="100" src="~@/assets/yellow.jpg">
             </v-col>
             <v-col class="cd-details">
-                <h3>RACE Shoes</h3>
-                <h5>2500.00</h5>
-                <h5>2 pairs</h5>
-                <h5>#shoes #male</h5>
+                <h3>{{item.name}}</h3>
+                <h5>{{item.price}}</h5>
+                <h5>{{item.quantity}} pairs</h5>
+                <h5>{{item.category}}</h5>
             </v-col>
             </v-row>
         </v-col>
@@ -54,6 +54,9 @@
 
 export default {
   name: "CartCard",
+  props:{
+    item: Object
+  },
   component: {
     //card
   },

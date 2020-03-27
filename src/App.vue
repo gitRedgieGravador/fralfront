@@ -25,9 +25,9 @@
     <div v-else>
       <v-card>
         <div class="sticky">
-          <v-toolbar class="main-head" v-if="!search">
+          <v-toolbar class="main-head myfont" v-if="!search">
             <h2 v-if="!cartScroll">Application name</h2>
-            <h2 v-if="cartScroll">Total Payable: PHP {{payable}}</h2>
+            <h2 v-if="cartScroll">Payable: Php {{payable}}</h2>
             <!-- <h2 v-if="$route.path == '/cart' && scrolled">Total</h2> -->
             <v-spacer></v-spacer>
             <img src="~@/assets/logo.png" class="logo-mobile">
@@ -45,7 +45,7 @@
             <br>
             <br>
             <br>
-            <router-view/>
+            <router-view></router-view>
 
             <v-footer absolute class="fixed">
               <hr>
@@ -104,13 +104,18 @@
   position: fixed;
 }
 
+.myfont {
+  font-family:Arial, Helvetica, sans-serif;
+}
 router-view {
   z-index: 0;
 }
-
-.x-fixed {
-  overflow-x: hidden;
+@media only screen and (max-width: 600px) {
+  .x-fixed {
+    overflow-x: hidden;
+  }
 }
+
 
 .icon-footer {
   height: 80px !important;
@@ -165,9 +170,9 @@ export default {
       }
     },
     fetchData() {
-      var topVal = this.$route.params.top
+      var name = this.$route.name
       this.payable = this.$route.params.price
-      if(topVal > 200){
+      if(name == 'cart2'){
         this.cartScroll = true;
 
       }else{

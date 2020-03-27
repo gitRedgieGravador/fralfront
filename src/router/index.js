@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Admin from '../views/admin'
+import Customer from '../views/customer'
 import Cart from '../views/cart'
 import Account from '../views/account'
 import Card from '../components/redgie/card'
@@ -10,14 +10,14 @@ Vue.use(VueRouter)
 
 const routes = [{
     path: '/',
-    name: 'admin',
-    component: Admin
+    name: 'customer',
+    component: Customer
 }, {
     path: '/cart',
     name: 'cart',
     component: Cart
 }, {
-    path: '/cart/:price/:top',
+    path: '/cart/:price',
     name: 'cart2',
     component: Cart
 }, {

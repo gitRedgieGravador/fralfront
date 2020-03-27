@@ -2,12 +2,10 @@
   <div id="card">
     <div class="pa-2">
       <div class="pa-3">
-        <h3>Total payable: Php {{total}} </h3>
+        <h3>Total payable: Php {{total}}</h3>
       </div>
-      <div v-for="(each, i) in 5" :key="i" class="pt-2 pb-2">
-
-        <CartCard></CartCard>
-
+      <div v-for="(each, i) in cart" :key="i" class="pt-2 pb-2">
+        <CartCard :item="each"></CartCard>
       </div>
       <br>
       <v-card outlined class="pa-2">
@@ -46,11 +44,11 @@
   height: 50px !important;
 }
 .conElem {
-    margin-top: -10px !important;
+  margin-top: -10px !important;
 }
 .confooter {
-    height: 50px !important;
-    margin-top: -10px;
+  height: 50px !important;
+  margin-top: -10px;
 }
 #conf-tx {
   position: relative !important;
@@ -73,7 +71,7 @@
 
 <script>
 /* eslint-disable */
-import CartCard from '../components/redgie/CartCard.vue';
+import CartCard from "../components/redgie/CartCard.vue";
 export default {
   name: "card",
   components: {
@@ -82,20 +80,78 @@ export default {
   data() {
     return {
       confirm: false,
-      total: 10000.00
+      total: 10000.0,
+      pathName: "",
+      cart:[
+        {
+        src:"~@/assets/yellow.jpg",
+        name: "Race yellow",
+        price: 1500.00,
+        category: "#Shoes #Male",
+        quantity: 2
+      },{
+        src:"~@/assets/yellow.jpg",
+        name: "Race yellow",
+        price: 1500.00,
+        category: "#Shoes #Male",
+        quantity: 2
+      },{
+        src:"~@/assets/yellow.jpg",
+        name: "Race yellow",
+        price: 1500.00,
+        category: "#Shoes #Male",
+        quantity: 2
+      },{
+        src:"~@/assets/yellow.jpg",
+        name: "Race yellow",
+        price: 1500.00,
+        category: "#Shoes #Male",
+        quantity: 2
+      },{
+        src:"~@/assets/yellow.jpg",
+        name: "Race yellow",
+        price: 1500.00,
+        category: "#Shoes #Male",
+        quantity: 2
+      },{
+        src:"~@/assets/yellow.jpg",
+        name: "Race yellow",
+        price: 1500.00,
+        category: "#Shoes #Male",
+        quantity: 2
+      },{
+        src:"~@/assets/yellow.jpg",
+        name: "Race yellow",
+        price: 1500.00,
+        category: "#Shoes #Male",
+        quantity: 2
+      },
+      ]
     };
   },
-  created(){
-    window.addEventListener("scroll", this.handleScroll)
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
     this.handleScroll();
-    
+    this.watchRoute();
   },
-  methods:{
-    handleScroll(){
+  watch: {
+    $route: "watchRoute"
+  },
+  methods: {
+    handleScroll() {
       var scrollVal = window.pageYOffset;
-      if(scrollVal > 150){
-        this.$router.push({path:'/cart/'+ this.total + "/" +scrollVal})
+      if (scrollVal > 150) {
+        if (this.$route.name != "cart2") {
+          this.$router.push({ path: "/cart/" + this.total});
+        }
+      } else {
+        if (this.$route.name != "cart") {
+          this.$router.push({ name:"cart"});
+        }
       }
+    },
+    watchRoute() {
+      //console.log(this.$route.name);
     }
   }
 };

@@ -61,10 +61,11 @@
 #quantity {
   font-size: 35px;
 }
-.rm {
-  padding-left: calc(100% - 332px);
+@media only screen and (max-width: 700px) {
+  .rm {
+    padding-left: calc(100% - 332px);
+  }
 }
-
 .center {
   display: flex;
 }
@@ -77,7 +78,7 @@
 import helper from "../helper/axios";
 import Card from "../components/redgie/card";
 export default {
-  name: "admin",
+  name: "customer",
   components: {
     Card
   },
