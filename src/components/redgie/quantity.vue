@@ -82,7 +82,7 @@ export default {
       quantity: 1
     };
   },
-  created(){
+  beforeCreated(){
       this.quantity = this.item.quantity
   },
   methods: {
@@ -101,7 +101,7 @@ export default {
       this.$emit("btnAddtoCart", this.quantity);
     },
     btnSave() {
-      this.$emit("btnSave", this.quantity);
+      this.$emit("btnSave", this.quantity); 
     }
   }
 };

@@ -9,21 +9,21 @@
             </v-row>
             <v-row class="nopadding">
               <v-col class="nopadding">
-                <p class="name">Baygon</p>
+                <p class="name">{{items.name}}</p>
               </v-col >
               <v-col cols="5" class="nopadding">
-                <p class="price">150.00</p>
+                <p class="price">{{items.price}}</p>
               </v-col>
             </v-row>
 
             <v-row class="footer">
               <v-col cols="6">
-                <v-btn block outlined color="success" class="action" @click="btnAddCart">
+                <v-btn block outlined color="success" class="action" @click="btnAddCart(items.id)">
                   <v-icon>mdi mdi-cart</v-icon>
                 </v-btn>
               </v-col>
               <v-col cols="6">
-                <v-btn block outlined color="primary" class="action" @click="btnDetails">
+                <v-btn block outlined color="primary" class="action" @click="btnDetails(items.id)">
                   <v-icon>mdi mdi-information-outline</v-icon>
                 </v-btn>
               </v-col>
@@ -71,15 +71,18 @@
 
 export default {
   name: "cart",
+  props:{
+    items: Object
+  },
   component: {
     //card
   },
   methods: {
     btnAddCart(event) {
-      this.$emit("btnAddCart");
+      this.$emit("btnAddCart", this.items.id);
     },
     btnDetails(event) {
-      this.$emit("btnDetails");
+      this.$emit("btnDetails", this.items.id);
     }
   }
 };

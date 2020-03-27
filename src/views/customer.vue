@@ -5,7 +5,7 @@
       <v-row class="rm">
         <div v-for="(each, i) in items" :key="i" class="center">
           <div class="ma-3">
-            <Card @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
+            <Card :items="each" @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
           </div>
         </div>
       </v-row>
@@ -13,7 +13,7 @@
       <!-- dialog for quantity starts here -->
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent width="290">
-          <QuanCard :inCart="false" :item="items[1]" @btnCancel="dialog = false" @btnAddtoCart="dialog = false"></QuanCard>
+          <QuanCard :inCart="false" :item="items[index]" @btnCancel="dialog = false" @btnAddtoCart="dialog = false"></QuanCard>
         </v-dialog>
       </v-row>
       <!-- dialog for quantity ends -->
@@ -75,6 +75,7 @@ export default {
       dialogDetails: false,
       quantity: 1,
       dialog: false,
+      index:null,
       items: [
         {
           id: 1,
@@ -143,7 +144,8 @@ export default {
         console.log("sila: ", this.students);
       });
     },
-    askForQuan() {
+    askForQuan(id) {
+      this.index = id;
       this.dialog = true;
     },
     
