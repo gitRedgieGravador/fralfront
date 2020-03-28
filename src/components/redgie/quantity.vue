@@ -9,8 +9,10 @@
             </v-col>
             <v-col class="cd-details">
               <h5>{{item.name}}</h5>
-              <h5>{{item.price}}</h5>
-              <h5><code>{{quantity}}</code> pairs</h5>
+              <h5>{{item.price}} pesos</h5>
+              <h5>
+                <code>{{quantity}}</code> pairs
+              </h5>
               <h5>{{item.category}}</h5>
             </v-col>
           </v-row>
@@ -23,12 +25,27 @@
         </v-col>
 
         <v-col>
-          <v-text-field class="btnInc" type="number" v-model="quantity" hide-details></v-text-field>
+          <v-text-field
+            :rules="[rules.required, rules.max]"
+            class="fn-20"
+            type="number"
+            v-model="quantity"
+            hide-details
+            outlined
+          ></v-text-field>
         </v-col>
         <v-col>
           <v-btn text class="btnInc" @click="btnIncClick">+</v-btn>
         </v-col>
       </v-row>
+      <!-- alert for quantity more than available -->
+      <v-alert class="text-center ml-5 mr-5" v-model="alert" color="rgba(255, 0, 0, 0.4);" tile>
+        <code>{{available}} available stocks left.</code>
+      </v-alert>
+      <!-- alert for quantity is 0 -->
+      <v-alert class="text-center ml-5 mr-5" v-model="alert0" color="rgba(255, 0, 0, 0.4);" tile>
+        <code>Quantity should not be 0.</code>
+      </v-alert>
 
       <v-spacer></v-spacer>
       <v-row class="pl-2 pr-2">
@@ -36,7 +53,7 @@
           <v-btn block color="secondary" @click="btnCancel" dark>Cancel</v-btn>
         </v-col>
         <v-col v-if="!inCart">
-          <v-btn block color="red" @click="btnAddtoCart" dark>Add to Cart</v-btn>
+          <v-btn block color="red" @click="btnAddtoCart" :disabled="alert || alert0"><b>Add to Cart</b></v-btn>
         </v-col>
         <v-col v-if="inCart">
           <v-btn block color="green" @click="btnSave" dark>Save</v-btn>
@@ -46,8 +63,12 @@
   </div>
 </template>
 <style scoped>
-.test {
-  border: 1px solid;
+.alert {
+  border: solid 1px;
+  height: 50px !important;
+}
+.fn-20 {
+  font-size: 20px !important;
 }
 #quantity {
   font-size: 35px;
@@ -69,6 +90,7 @@
 </style>
 
 <script>
+/* eslint-disable */
 export default {
   name: "quantity",
   props: {
@@ -77,17 +99,38 @@ export default {
   },
   data() {
     return {
+      alert: true,
+      alert0: false,
       quantity: 1,
-      url:null
+      url: null,
+      available: 0,
+      rules: {
+        required: value => !!value || "Required.",
+        max: value =>
+          value <= this.available || "Quantity left is " + this.available
+      }
     };
   },
+  updated() {
+    if (this.quantity > this.available) {
+      this.alert = true;
+    } else if (this.quantity == 0) {
+      this.alert0 = true;
+    } else {
+      this.alert = false;
+      this.alert0 = false;
+    }
+  },
   mounted() {
-    this.quantity = this.item.quantity;
-    this.url = 'https://gmbuck.s3.amazonaws.com/gm/' + this.item.src;
+    this.available = this.item.quantity;
+    this.url = "https://gmbuck.s3.amazonaws.com/gm/" + this.item.src;
   },
   methods: {
     btnIncClick() {
-      this.quantity = parseInt(this.quantity) + 1;
+      if (parseInt(this.quantity) < this.available) {
+        this.quantity = parseInt(this.quantity) + 1;
+        this.alert = true;
+      }
     },
     btnDecClick() {
       if (parseInt(this.quantity) > 1) {

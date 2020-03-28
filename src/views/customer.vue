@@ -83,7 +83,7 @@ export default {
           name: "Baygon",
           price: 150.0,
           category: "#disinfectant",
-          quantity: 2,
+          quantity: 100,
           label:"pcs"
         },
         {
@@ -92,7 +92,7 @@ export default {
           name: "Plain t-shirt",
           price: 100.0,
           category: "#shirt",
-          quantity: 2,
+          quantity: 45,
           label:"pcs"
         },
         {
@@ -101,7 +101,7 @@ export default {
           name: "Timex Indigo",
           price: 2500.0,
           category: "#watch",
-          quantity: 2,
+          quantity: 30,
           label:"pcs"
         },
         {
@@ -110,7 +110,7 @@ export default {
           name: "Photo Mug",
           price: 150.0,
           category: "#mug",
-          quantity: 2,
+          quantity: 30,
           label:"pcs"
         },
         {
@@ -119,7 +119,7 @@ export default {
           name: "30m Cat5 RJ45",
           price: 450.0,
           category: "#rj45 cable",
-          quantity: 2,
+          quantity: 250,
           label:"meter"
         },
         {
@@ -128,7 +128,7 @@ export default {
           name: "Black Tiktak",
           price: 250.0,
           category: "#disinfectant",
-          quantity: 2
+          quantity: 20
         }
       ]
     };
