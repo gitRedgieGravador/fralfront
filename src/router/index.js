@@ -30,8 +30,9 @@ const routes = [{
     component: Card
 }, {
     path: '*',
-    name: 'customer',
-    component: Customer
+    redirect: {
+        path: '/'
+    }
 }]
 
 const router = new VueRouter({
