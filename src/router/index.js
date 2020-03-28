@@ -28,6 +28,10 @@ const routes = [{
     path: '/card',
     name: 'card',
     component: Card
+}, {
+    path: '*',
+    name: 'customer',
+    component: Customer
 }]
 
 const router = new VueRouter({
