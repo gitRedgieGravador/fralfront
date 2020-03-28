@@ -5,7 +5,7 @@
         <v-col cols="10" class="bright nopadding">
           <v-row>
             <v-col class="nopadding">
-              <img class="my-img" height="100" width="100" src="~@/assets/yellow.jpg">
+              <img class="my-img" height="100" width="100" :src="url">
             </v-col>
             <v-col class="cd-details">
               <h5>{{item.name}}</h5>
@@ -77,11 +77,13 @@ export default {
   },
   data() {
     return {
-      quantity: 1
+      quantity: 1,
+      url:null
     };
   },
-  beforeCreated() {
+  mounted() {
     this.quantity = this.item.quantity;
+    this.url = 'https://gmbuck.s3.amazonaws.com/gm/' + this.item.src;
   },
   methods: {
     btnIncClick() {
@@ -102,7 +104,7 @@ export default {
     },
     btnSave() {
       this.$emit("btnSave", this.quantity);
-      this.quantity = null;
+      //this.quantity = null;
     }
   }
 };

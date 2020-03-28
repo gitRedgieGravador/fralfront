@@ -6,22 +6,33 @@
           <CartCard :item="each" @btnEdit="handleEdit"></CartCard>
         </div>
       </div>
-      <br>
+
       <div v-if="isCheckout">
         <!-- receipt  -->
+        <div>
+          <v-card class="text-center pt-2" outlined>
+            <h6>Lapu-lapu Chapter General Merchandise</h6>
+            <p>
+              Contact: 09123456789
+              <br>Email: llcgeneralmerchandise@gmail.com
+              <br>Address: ML Quezon National Highway, Mustang Pusok, Lapu Lapu city
+            </p>
+          </v-card>
+        </div>
+        <br>
         <v-card outlined>
           <Checkout :items="itemsCart"></Checkout>
         </v-card>
-        <br>
+
         <!-- Total area -->
 
         <v-card outlined>
           <v-row class="text-center">
             <v-col>
-              <h3>Total:</h3>
+              <h5>Total:</h5>
             </v-col>
             <v-col>
-              <h3>{{new Intl.NumberFormat().format(total)}}</h3>
+              <h5>{{new Intl.NumberFormat().format(total)}}</h5>
             </v-col>
           </v-row>
         </v-card>
@@ -43,7 +54,7 @@
           <v-footer class="nopadding confooter">
             <v-row class="ml-5 conElem">
               <v-col>
-                <v-switch v-model="confirm" class="ma-2"></v-switch>
+                <v-switch v-model="confirm" class="ma-2" @click="handleConfirm"></v-switch>
               </v-col>
               <v-col>
                 <h3 id="conf-tx">Confirm</h3>
@@ -51,23 +62,30 @@
             </v-row>
           </v-footer>
         </v-card>
+
+        <!-- Order Button v-if="isCheckout" -->
+        <div v-if="confirm">
+          <br>
+          <v-btn block id="btnOrder" color="red" :disabled="!confirm">
+            <b>Order Now</b>
+          </v-btn>
+        </div>
       </div>
       <br>
-      <!-- Order Button -->
-      <v-btn block dark v-if="isCheckout" id="btnOrder" color="red" :disabled="!confirm">
-        <b>Order Now</b>
-      </v-btn>
-      <v-btn block v-if="!isCheckout" dark id="btnOrder" color="red" @click="isCheckout = true">
-        <b>Check Out</b>
-      </v-btn>
+      <div v-if="!isCheckout">
+        <v-btn block dark id="btnOrder" color="red" @click="handleCheckout">
+          <b>Check Out</b>
+        </v-btn>
+      </div>
+
       <!-- dialog for quantity starts here -->
 
-      <v-row justify="center">
+      <v-row justify="center" v-if="dialog">
         <v-dialog v-model="dialog" persistent width="290">
           <QuanCard
             :inCart="true"
-            :item="itemsCart[1]"
-            @btnCancel="dialog = false"
+            :item="editItem"
+            @btnCancel="handleCancel"
             @btnAddtoCart="dialog = false"
           ></QuanCard>
         </v-dialog>
@@ -80,6 +98,9 @@
   </div>
 </template>
 <style scoped>
+p {
+  font-size: 9px;
+}
 #btnOrder {
   height: 50px !important;
 }
@@ -135,53 +156,58 @@ export default {
       total: 10000.0,
       pathName: "",
       dialog: false,
-      editId: null,
+      editItem: null,
       itemsCart: [
         {
           id: 1,
-          src: "~@/assets/yellow.jpg",
+          src: "yellow.jpg",
           name: "Baygon",
           price: 150.0,
           category: "#disinfectant",
-          quantity: 2
+          quantity: 2,
+          label: "pcs"
         },
         {
           id: 2,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
-          price: 150.0,
-          category: "#disinfectant",
-          quantity: 2
+          src: "blackshirts.jpg",
+          name: "Plain t-shirt",
+          price: 100.0,
+          category: "#shirt",
+          quantity: 2,
+          label: "pcs"
         },
         {
           id: 3,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
-          price: 150.0,
-          category: "#disinfectant",
-          quantity: 2
+          src: "timexIndigo.png",
+          name: "Timex Indigo",
+          price: 2500.0,
+          category: "#watch",
+          quantity: 2,
+          label: "pcs"
         },
         {
           id: 4,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
+          src: "photomagicmug.png",
+          name: "Photo Mug",
           price: 150.0,
-          category: "#disinfectant",
-          quantity: 2
+          category: "#mug",
+          quantity: 2,
+          label: "pcs"
         },
         {
           id: 5,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
-          price: 150.0,
-          category: "#disinfectant",
-          quantity: 2
+          src: "30mBlueCat5Rj45.png",
+          name: "30m Cat5 RJ45",
+          price: 450.0,
+          category: "#rj45 cable",
+          quantity: 2,
+          label: "meter"
         },
         {
           id: 6,
-          src: "~@/assets/yellow.jpg",
-          name: "Baygon",
-          price: 150.0,
+          src: "shoes.jpg",
+          name: "Black Tiktak",
+          price: 250.0,
           category: "#disinfectant",
           quantity: 2
         }
@@ -208,9 +234,25 @@ export default {
     watchRoute() {
       //console.log(this.$route.name);
     },
-    handleEdit(id) {
-      this.editId = id;
+    handleEdit(item) {
+      this.editItem = item;
       this.dialog = true;
+    },
+    handleCancel() {
+      this.dialog = false;
+      this.editItem = null;
+    },
+    handleCheckout() {
+      this.isCheckout = true;
+      window.scrollTo(0, 0);
+    },
+    handleConfirm() {
+      this.confirm = true;
+      window.scrollTo({
+        left: 0,
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
     }
   }
 };

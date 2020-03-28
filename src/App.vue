@@ -26,14 +26,13 @@
       <v-card>
         <div class="sticky">
           <v-toolbar class="main-head myfont" v-if="!search">
-            <h2 v-if="!cartScroll">Application name</h2>
-            <h2 v-if="cartScroll">Payable: Php {{payable}}</h2>
+            <h2>Application name</h2>
             <!-- <h2 v-if="$route.path == '/cart' && scrolled">Total</h2> -->
             <v-spacer></v-spacer>
             <img src="~@/assets/logo.png" class="logo-mobile">
           </v-toolbar>
           <v-toolbar dense class="toolbar" v-if="search">
-            <v-text-field  hide-details placeholder="search"></v-text-field>
+            <v-text-field hide-details placeholder="search"></v-text-field>
             <v-btn icon>
               <v-icon>mdi mdi-magnify</v-icon>
             </v-btn>
@@ -73,7 +72,6 @@
   </div>
 </template>
 <style scoped>
-
 .logo-mobile {
   margin-top: 5%;
   border-radius: 50%;
@@ -106,7 +104,10 @@
 }
 
 .myfont {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.btnBack {
+  font-size: 35px !important;
 }
 router-view {
   z-index: 0;
@@ -116,7 +117,6 @@ router-view {
     overflow-x: hidden;
   }
 }
-
 
 .icon-footer {
   height: 80px !important;
@@ -135,7 +135,7 @@ router-view {
   width: 100%;
   /* background-color: rgb(140, 140, 140) !important;
   color: white !important; */
-} 
+}
 </style>
 <script>
 //import HelloWorld from './components/HelloWorld';
@@ -152,17 +152,27 @@ export default {
       mobile: false,
       search: false,
       cartScroll: false,
-      payable: 0
+      payable: 0,
+      routeName: 'customer',
+      prevRouteName: null,
     };
   },
   created() {
     window.addEventListener("resize", this.Handler);
     this.Handler();
+    this.watchRoute();
   },
   destroyed() {
     window.removeEventListener("resize", this.Handler);
   },
+  watch: {
+    $route: "watchRoute"
+  },
   methods: {
+    watchRoute(){
+      this.prevRouteName = this.routeName;
+      this.routeName = this.$route.name;
+    },
     Handler() {
       if (window.innerWidth < 700) {
         this.mobile = true;
@@ -187,7 +197,10 @@ export default {
       } else if (btn == "search" && this.$route.name == "customer") {
         this.search = true;
       }
-    }
+    },
+    // handleBack(){
+    //   this.$router.go(-1);
+    // }
   }
 };
 </script>

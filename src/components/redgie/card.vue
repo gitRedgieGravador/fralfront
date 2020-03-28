@@ -9,21 +9,21 @@
             </v-row>
             <v-row class="nopadding">
               <v-col class="nopadding">
-                <p class="name">{{data.name}}</p>
+                <p class="name">{{item.name}}</p>
               </v-col >
               <v-col cols="5" class="nopadding">
-                <p class="price">{{data.price}}</p>
+                <p class="price">{{item.price}}</p>
               </v-col>
             </v-row>
 
             <v-row class="footer">
               <v-col cols="6">
-                <v-btn block outlined color="success" class="action" @click="btnAddCart(data.id)">
+                <v-btn block outlined color="success" class="action" @click="btnAddCart(item)">
                   <v-icon>mdi mdi-cart</v-icon>
                 </v-btn>
               </v-col>
               <v-col cols="6">
-                <v-btn block outlined color="primary" class="action" @click="btnDetails(data.id)">
+                <v-btn block outlined color="primary" class="action" @click="btnDetails(item)">
                   <v-icon>mdi mdi-information-outline</v-icon>
                 </v-btn>
               </v-col>
@@ -89,10 +89,10 @@ export default {
   },
   methods: {
     btnAddCart(event) {
-      this.$emit("btnAddCart", this.items.id);
+      this.$emit("btnAddCart", event);
     },
     btnDetails(event) {
-      this.$emit("btnDetails", this.items.id);
+      this.$emit("btnDetails", event);
     }
   }
 };

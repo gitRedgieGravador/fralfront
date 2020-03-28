@@ -6,7 +6,7 @@
         <v-col cols="10" class="bright nopadding">
             <v-row>
             <v-col class="nopadding">
-                <img class="my-img" height="100" width="100" src="~@/assets/yellow.jpg">
+                <img class="my-img" height="100" width="100" :src="url">
             </v-col>
             <v-col class="cd-details">
                 <h3>{{item.name}}</h3>
@@ -18,7 +18,7 @@
         </v-col>
         <v-col class="ml-2">
             <v-row>
-            <v-icon color="green" @click="btnEdit(item.id)">mdi mdi-table-edit</v-icon>
+            <v-icon color="green" @click="btnEdit(item)">mdi mdi-table-edit</v-icon>
             </v-row>
             <br>
             <v-row>
@@ -62,11 +62,15 @@ export default {
   },
   data() {
     return {
+      url:""
     };
   },
+  mounted(){
+    this.url = 'https://gmbuck.s3.amazonaws.com/gm/' + this.item.src;
+  },
   methods:{
-    btnEdit(id){
-      this.$emit("btnEdit", id);
+    btnEdit(item){
+      this.$emit("btnEdit", item);
     },
     btnDelete(id){
       this.$emit("btnDelete", id);

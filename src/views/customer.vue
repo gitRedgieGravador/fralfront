@@ -6,20 +6,20 @@
         <div v-for="(each, i) in items" :key="i" class="center">
           <div class="ma-3">
             
-            <Card :item="items[i]" @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
+            <Card :item="each" @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
           </div>
         </div>
       </v-row>
 
       <!-- dialog for quantity starts here -->
-      <v-row justify="center">
+      <v-row justify="center" v-if="dialog">
         <v-dialog v-model="dialog" persistent width="290">
-          <QuanCard :inCart="false" :item="items[index]" @btnCancel="dialog = false" @btnAddtoCart="dialog = false"></QuanCard>
+          <QuanCard :inCart="false" :item="indexItem" @btnCancel="QuanCancel" @btnAddtoCart="dialog = false"></QuanCard>
         </v-dialog>
       </v-row>
       <!-- dialog for quantity ends -->
       <!-- dialog for details start -->
-      <v-row>
+      <v-row v-if="dialogDetails">
         <v-dialog v-model="dialogDetails" persistent max-width="290">
           <v-card>
             <v-card-title class="headline">Details</v-card-title>
@@ -76,7 +76,7 @@ export default {
       dialogDetails: false,
       quantity: 1,
       dialog: false,
-      index:null,
+      indexItem:null,
       items: [
         {
           id: 1,
@@ -150,13 +150,18 @@ export default {
         console.log("sila: ", this.students);
       });
     },
-    askForQuan(id) {
-      this.index = id;
+    askForQuan(item) {
+      this.indexItem = item;
       this.dialog = true;
     },
     
     showDetails(id) {
       this.dialogDetails = true;
+    },
+    QuanCancel(){
+      this.dialogDetails = false;
+      this.dialog = false;
+      this.indexItem = null;
     }
   }
 };
