@@ -5,10 +5,10 @@
         <v-row>
         <v-col cols="10" class="bright nopadding">
             <v-row>
-            <v-col class="nopadding">
+            <v-col class="nopadding text-left">
                 <img class="my-img" height="100" width="100" :src="url">
             </v-col>
-            <v-col class="cd-details">
+            <v-col class="cd-details text-left">
                 <h3>{{item.name}}</h3>
                 <h5>{{item.price}}</h5>
                 <h5>{{item.quantity}} pairs</h5>
