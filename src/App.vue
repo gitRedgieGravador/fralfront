@@ -44,7 +44,9 @@
             <br>
             <br>
             <br>
-            <router-view></router-view>
+            <center>
+              <router-view></router-view>
+            </center>
 
             <v-footer absolute class="fixed">
               <hr>
@@ -153,8 +155,8 @@ export default {
       search: false,
       cartScroll: false,
       payable: 0,
-      routeName: 'customer',
-      prevRouteName: null,
+      routeName: "customer",
+      prevRouteName: null
     };
   },
   created() {
@@ -169,7 +171,7 @@ export default {
     $route: "watchRoute"
   },
   methods: {
-    watchRoute(){
+    watchRoute() {
       this.prevRouteName = this.routeName;
       this.routeName = this.$route.name;
     },
@@ -197,7 +199,7 @@ export default {
       } else if (btn == "search" && this.$route.name == "customer") {
         this.search = true;
       }
-    },
+    }
     // handleBack(){
     //   this.$router.go(-1);
     // }

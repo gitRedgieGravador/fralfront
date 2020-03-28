@@ -2,10 +2,9 @@
   <div>
     <div>
       <!-- items -->
-      <v-row class="rm">
-        <div v-for="(each, i) in items" :key="i" class="center">
-          <div class="ma-3">
-            
+      <v-row justify="center">
+        <div v-for="(each, i) in items" :key="i">
+          <div class="ma-3"> 
             <Card :item="each" @btnAddCart="askForQuan" @btnDetails="showDetails"></Card>
           </div>
         </div>
@@ -45,11 +44,11 @@
 #quantity {
   font-size: 35px;
 }
-@media only screen and (max-width: 700px) {
+/* @media only screen and (max-width: 1200px) {
   .rm {
     padding-left: calc(100% - 332px);
   }
-}
+} */
 .center {
   display: flex;
 }
@@ -136,12 +135,7 @@ export default {
   },
 
   mounted() {
-    // var url =
-    //   "https://qofbe721ad.execute-api.us-east-1.amazonaws.com/dev/upload";
-    // this.axios.get(url).then(resp => {
-    //   this.admin = resp.data.name;
-    //   console.log(resp);
-    // });
+    console.log(window.innerWidth);
   },
   methods: {
     getStudents() {
