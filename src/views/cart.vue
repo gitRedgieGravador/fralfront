@@ -25,7 +25,7 @@
         </v-card>
 
         <!-- Total area -->
-
+        <br>
         <v-card outlined>
           <v-row class="text-center">
             <v-col>
