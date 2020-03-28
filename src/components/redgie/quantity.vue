@@ -10,7 +10,7 @@
             <v-col class="cd-details">
               <h5>{{item.name}}</h5>
               <h5>{{item.price}}</h5>
-              <h5>{{quantity}} pairs</h5>
+              <h5><code>{{quantity}}</code> pairs</h5>
               <h5>{{item.category}}</h5>
             </v-col>
           </v-row>
