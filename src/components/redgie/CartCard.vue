@@ -5,7 +5,7 @@
         <v-row>
         <v-col cols="10" class="bright nopadding">
             <v-row>
-            <v-col class="nopadding text-left">
+            <v-col class="nopadding text-left pt-2">
                 <img class="my-img" height="100" width="100" :src="url">
             </v-col>
             <v-col class="cd-details text-left">
@@ -17,7 +17,7 @@
             </v-row>
         </v-col>
         <v-col class="ml-2">
-            <v-row>
+            <v-row class="pt-2">
             <v-icon color="green" @click="btnEdit(item)">mdi mdi-table-edit</v-icon>
             </v-row>
             <br>

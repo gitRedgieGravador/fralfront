@@ -42,13 +42,13 @@
         <v-card outlined class="pa-2">
           <h3>Delivery Infomation</h3>
           <v-row>
-            <v-col cols="10">
+            <v-col cols="10 text-left">
               <h5>Address: Basak Lapu lapu city</h5>
               <h5>Mobile: 09123456789</h5>
               <h5>Payable: {{new Intl.NumberFormat().format(total)}}</h5>
             </v-col>
             <v-col>
-              <v-icon>mdi mdi-table-edit</v-icon>
+              <v-icon color="green" @click="dialogEditDelivery = true">mdi mdi-table-edit</v-icon>
             </v-col>
           </v-row>
           <v-footer class="nopadding confooter">
@@ -62,6 +62,20 @@
             </v-row>
           </v-footer>
         </v-card>
+
+        <!-- edit delivery info dialog -->
+        <v-row justify="center" v-if="dialogEditDelivery">
+          <v-dialog v-model="dialogEditDelivery" persistent width="290">
+            <v-card class="text-center">
+              Delivery Info
+              <br>
+              <br>edit delivery info here
+            </v-card>
+            <v-footer>
+              <v-btn color="secondary" dark @click="dialogEditDelivery = false">cancel</v-btn>
+            </v-footer>
+          </v-dialog>
+        </v-row>
 
         <!-- Order Button v-if="isCheckout" -->
         <div v-if="confirm">
@@ -157,6 +171,7 @@ export default {
       pathName: "",
       dialog: false,
       editItem: null,
+      dialogEditDelivery: false,
       itemsCart: [
         {
           id: 1,
